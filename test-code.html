@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test-code</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+    </style>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        height: 100%;
+        overflow-x: hidden;
+      }
+      #smooth-wrapper {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        top: 0;
+        left: 0;
+        min-height: 900px;
+      }
+      #smooth-wrapper #smooth-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .text {
+        width: 100%;
+        font-size: 120px;
+        background-color: white;
+        position: absolute;
+        top: 200px;
+
+        overflow: hidden;
+      }
+      .text h1 {
+        text-align: center;
+        visibility: inherit;
+        font-family: "Source Sans Pro", sans-serif;
+      }
+      .text1 {
+        width: 250px;
+        height: 70px;
+        line-height: 70px;
+        font-size: 1.3em;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        z-index: 9999;
+        overflow: hidden;
+      }
+      .text1 h1 {
+        text-align: center;
+        visibility: inherit;
+        font-family: "Source Sans Pro", sans-serif;
+      }
+      .text2 {
+        width: 100%;
+        font-size: 60px;
+        position: absolute;
+        top: 180px;
+        opacity: 1;
+        overflow: hidden;
+      }
+      .text2 h1 {
+        text-align: center;
+        visibility: inherit;
+        font-family: "Source Sans Pro", sans-serif;
+      }
+      .content {
+        width: 100%;
+        height: 100vh;
+
+        background-color: brown;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .content .box {
+        width: 400px;
+        height: 400px;
+        background-color: black;
+        margin: 0 50px;
+      }
+
+      section {
+        width: 100%;
+        height: 100vh;
+      }
+      .con-cover {
+        width: 100%;
+        height: 100vh;
+      }
+      .con-cover .wrap {
+        width: 100%;
+        height: 100%;
+        white-space: nowrap;
+        display: flex;
+        position: relative;
+      }
+      .con-cover .con {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        border: 1px solid white;
+        background-color: aqua;
+        box-sizing: border-box;
+      }
+      .con-cover .con:nth-child(2) {
+        left: 50%;
+      }
+      .con-cover .con:nth-child(3) {
+        left: 100%;
+      }
+      .con-cover .con:nth-child(4) {
+        left: 150%;
+      }
+      .con-cover .con:nth-child(5) {
+        left: 200%;
+      }
+      .con-cover .con:nth-child(6) {
+        left: 250%;
+      }
+      .con-cover .con:nth-child(7) {
+        left: 300%;
+      }
+      .con-cover .con:nth-child(8) {
+        left: 350%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <div class="text"><h1>WELCOME</h1></div>
+        <div class="text1">
+          <h1>PORTFOLIO</h1>
+        </div>
+        <div class="text2">
+          <h1>SEONGKOOK</h1>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <section style="background-color: yellow"></section>
+    <section style="background-color: violet" class="con-cover">
+      <div class="wrap" data-speed="0.1">
+        <div class="con" style="background-color: black"></div>
+        <div class="con" style="background-color: burlywood"></div>
+        <div class="con" style="background-color: skyblue"></div>
+        <div class="con" style="background-color: seagreen"></div>
+        <div class="con" style="background-color: red"></div>
+      </div>
+    </section>
+    <section style="background-color: tomato"></section>
+
+    <!--  -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="lib/test-code.js"></script>
+    <!-- Smooth Scroll -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"
+      integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      ScrollSmoother.create({
+        smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+        effects: true, // looks for data-speed and data-lag attributes on elements
+        smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>new-test</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      div {
+        width: 500px;
+        height: 500px;
+        border: 1px solid gray;
+        margin: 100px auto;
+      }
+      #wrap {
+        width: 100%;
+        height: 600px;
+      }
+      .trigger {
+        width: 300px;
+        height: 500px;
+        background-color: rebeccapurple;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <div data-aos="fade-up"></div>
+    <div data-aos="fade-down"></div>
+    <div
+      data-aos="fade-right"
+      data-aos-offset="300"
+      data-aos-easing="ease-in-sine"
+    ></div>
+    <div
+      data-aos="fade-down"
+      data-aos-easing="linear"
+      data-aos-duration="1500"
+    ></div>
+
+    <div data-aos="fade-up" data-aos-duration="3000"></div>
+    <div data-aos="zoom-out-left"></div>
+    <div data-aos="zoom-out-up"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div id="wrap"><div class="trigger"></div></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        default: true,
+      });
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: "#wrap",
+            start: "top center",
+            end: "bottom top",
+            markers: true,
+            scrub: true,
+            pin: true,
+          },
+        })
+        .from(".trigger", { x: innerWidth * 1, duration: 0.5, scale: 3 });
+    </script>
+  </body>
+</html>

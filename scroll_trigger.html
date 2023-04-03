@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      path {
+        fill: none;
+        stroke: black;
+        stroke-width: 5px;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <section>
+      <h2>Scroll To Begin</h2>
+    </section>
+
+    <div class="box">
+      <h2 class="text1">Scroll Trigger is Awesome</h2>
+      <h2 class="text2">This is My Frist Code</h2>
+      <h2 class="text3">How it is?</h2>
+    </div>
+    <div class="box2">
+      <h2 class="text4">Stay Tuned</h2>
+      <h2 class="text5">For more Video</h2>
+      <h2 class="text6">ThankYou</h2>
+    </div>
+    <script>
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".box",
+            start: "top 20%",
+            end: "200% top",
+            markers: true,
+            scrub: true,
+            pin: true,
+          },
+        })
+        .from(".text1", { x: innerWidth * 1, duration: 0.5, scale: 3 })
+        .from(".text2", { x: innerWidth * -1 })
+        .from(".text3", { x: innerWidth * 1 });
+      // .from(".path3", { drawSVG: 0, duration: 4 });
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".box2",
+            start: "center center",
+            end: "bottom top",
+            markers: true,
+            scrub: true,
+            pin: true,
+          },
+        })
+        .from(".box2", { opacity: 0 })
+        .from(".text4", { y: innerHeight * 0.1, duration: 0.5 })
+        .from(".text5", { y: innerHeight * 1, opacity: 0 })
+        .from(".text6", { y: innerHeight * 1 });
+    </script>
+  </body>
+</html>

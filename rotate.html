@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test1</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+        font-family: sans-serif;
+      }
+
+      h1 {
+        margin: 0;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center !important;
+        letter-spacing: 2px;
+        font-size: 80px;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+
+      h1::before,
+      h1::after {
+        content: "";
+        width: 220px;
+        height: 1px;
+        border: 4px double white;
+        display: block;
+        margin: 20px auto;
+      }
+
+      header {
+        height: calc(100% - 65px);
+        /* -webkit-appearance: 1500px; */
+        perspective: 1500px;
+        perspective-origin: center bottom;
+      }
+      .hero {
+        position: relative;
+        background: #333 url(img/bg01.jpg) no-repeat center center;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        transform-origin: 50% 100%;
+        transform-style: preserve-3d;
+      }
+
+      .hero .overlay {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+
+      nav {
+        background: linear-gradient(
+          to bottom,
+          rgba(20, 20, 20, 0) 10%,
+          rgba(20, 20, 20, 0.25) 25%,
+          rgba(20, 20, 20, 0.5) 50%,
+          rgba(20, 20, 20, 0.75) 75%,
+          rgba(20, 20, 20, 1) 100%
+        );
+        height: 65px;
+      }
+      nav.fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .sticky-wrapper {
+        height: 65px;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+      }
+      nav ul li {
+        display: inline-block;
+      }
+      nav ul li a {
+        height: 65px;
+        line-height: 65px;
+        padding: 10px 15px;
+        font-size: 14px;
+        color: #fff;
+        letter-spacing: 2px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      section {
+        height: 100%;
+        width: 100%;
+        display: table;
+      }
+      section#item1 {
+        background-color: #000a1d;
+        font-family: sans-serif;
+      }
+      section#item2 {
+        background: url(img/bg03.jpg) center center no-repeat;
+        background-size: cover;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="home">
+      <div class="hero">
+        <div class="overlay"></div>
+        <h1>Scroll Magic</h1>
+      </div>
+    </header>
+
+    <div class="sticky-wrapper">
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Project</a></li>
+          <li><a href="#">Faq</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <section id="item1">
+      <h1>Some Section</h1>
+    </section>
+
+    <section id="item2">
+      <h1>Other Section</h1>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script>
+      $(window).scroll(function () {
+        let heroHeight = $("header").height();
+        let yPosition = $(document).scrollTop();
+
+        if (yPosition <= heroHeight) {
+          let effectFactor = yPosition / heroHeight;
+          let rotation =
+            effectFactor *
+            (Math.PI / 2 - Math.asin((heroHeight - yPosition) / heroHeight));
+          $(".hero")
+            .css({
+              "-webkit-transform": "rotateX(" + rotation + "rad)",
+              transfrom: "rotateX(" + rotation + "rad)",
+            })
+            .find(".overlay")
+            .css("opacity", effectFactor);
+        }
+
+        if (yPosition <= heroHeight) {
+          $("nav").removeClass("fixed");
+        } else {
+          $("nav").addClass("fixed");
+        }
+      });
+    </script>
+  </body>
+</html>

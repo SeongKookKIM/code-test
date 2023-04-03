@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>svg_test</title>
+    <style>
+      .header {
+        padding-top: 20vh;
+        background-color: #000;
+      }
+      .path1 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 3px;
+      }
+      .content1 {
+        width: 100%;
+        height: 100vh;
+      }
+
+      .path2 {
+        fill: none;
+        stroke: black;
+        stroke-width: 3px;
+      }
+      footer {
+        width: 100%;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+        <path
+          class="path1"
+          d="M54,882s324-46,414-94c0,0,44-32,76-75s35-61,90-83,140-68,155-82c0,0,23-14,12,28s-39,57-72,77-29,40-29,40c0,0,41-1,57,0s36.96,12,46.98,12,39.02-41,40.02-47,13-18,29-17-1,35-12,55,93-72,93-72c0,0,31-12,15,20s-32.99,51.67-32.99,51.67c0,0,95.99-55.67,111.99-57.67s26-10,25,2-37.33,59.76-94.67,73.88-139.33-.88-183.33-7.88c0,0,120.44,21.76,200.22,7.88s86.78-21.88,86.78-21.88c0,0,64-4-8,43s-163,60-213,64-312.44,83-312.44,83c0,0-25.56,33-101.56,50,0,0-107,46-189,109l172-125s106-72,313-107,184-25,403-126l169-90s41.67-5.25,107.33-80.12,126.67-89.87,295.67-149.87c0,0-129,11-237,53,0,0-29,34-36,50s-17-9-31-34-96,50-106,69c0,0-19,14-43,21s-12,23-53,46-73,38-66,97c0,0,38-95,131-117,0,0,28-9-26-39s-107-53-142-43-73.33,74-73.33,74c0,0,37.33,4,118.33-56,0,0,4-38-77-18,0,0-39.33,24.75-54.67,46.87s-43.33,32.12-69.33,32.12,36-73,36-73l48-19s64-7,115,16-118-21-118-21c0,0-75,57-159,57,0,0-57-10.89,11-40.44s50-26.67,50-26.67l100,6.11-127-9s-91-25-57-50c0,0,106,9,173-12s340-13,408-39S1837,68,1837,68"
+        />
+      </svg>
+    </div>
+    <div class="content1">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1920 1080"
+        class="sv_box2"
+      >
+        <path
+          class="path2"
+          d="M54,882s324-46,414-94c0,0,44-32,76-75s35-61,90-83,140-68,155-82c0,0,23-14,12,28s-39,57-72,77-29,40-29,40c0,0,41-1,57,0s36.96,12,46.98,12,39.02-41,40.02-47,13-18,29-17-1,35-12,55,93-72,93-72c0,0,31-12,15,20s-32.99,51.67-32.99,51.67c0,0,95.99-55.67,111.99-57.67s26-10,25,2-37.33,59.76-94.67,73.88-139.33-.88-183.33-7.88c0,0,120.44,21.76,200.22,7.88s86.78-21.88,86.78-21.88c0,0,64-4-8,43s-163,60-213,64-312.44,83-312.44,83c0,0-25.56,33-101.56,50,0,0-107,46-189,109l172-125s106-72,313-107,184-25,403-126l169-90s41.67-5.25,107.33-80.12,126.67-89.87,295.67-149.87c0,0-129,11-237,53,0,0-29,34-36,50s-17-9-31-34-96,50-106,69c0,0-19,14-43,21s-12,23-53,46-73,38-66,97c0,0,38-95,131-117,0,0,28-9-26-39s-107-53-142-43-73.33,74-73.33,74c0,0,37.33,4,118.33-56,0,0,4-38-77-18,0,0-39.33,24.75-54.67,46.87s-43.33,32.12-69.33,32.12,36-73,36-73l48-19s64-7,115,16-118-21-118-21c0,0-75,57-159,57,0,0-57-10.89,11-40.44s50-26.67,50-26.67l100,6.11-127-9s-91-25-57-50c0,0,106,9,173-12s340-13,408-39S1837,68,1837,68"
+        />
+      </svg>
+    </div>
+    <footer></footer>
+    <script>
+      const content1 = document.querySelector(".content1");
+      const path1 = document.querySelector(".path2");
+      const path1Length = path1.getTotalLength();
+
+      path1.style.strokeDasharray = path1Length;
+      path1.style.strokeDashoffset = path1Length;
+
+      function calcDashoffset(scrollY, element, length) {
+        const ratio = (scrollY - element.offsetTop) / element.offsetHeight;
+        const value = length - length * ratio;
+        return value < 0 ? 0 : value > length ? length : value;
+      }
+
+      function scrollHandler() {
+        const scrollY = window.scrollY + window.innerHeight * 0.8;
+        path1.style.strokeDashoffset = calcDashoffset(
+          scrollY,
+          content1,
+          path1Length
+        );
+      }
+
+      window.addEventListener("scroll", scrollHandler);
+    </script>
+  </body>
+</html>

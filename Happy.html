@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #222;
+        overflow: hidden;
+      }
+      h2 {
+        color: #fff;
+        font-size: 14vw;
+        z-index: 10000000;
+        user-select: none;
+        pointer-events: none;
+        text-shadow: 0 20px 30px rgba(255, 255, 255, 0.2);
+      }
+      span {
+        position: absolute;
+        pointer-events: none;
+        width: 100px;
+        height: 100px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: animate 0.5s linear infinite;
+      }
+      @keyframes animate {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Road Map</h2>
+    <script>
+      let images = ["url(img/foot.png)"];
+      let body = document.querySelector("body");
+      body.onclick = function (e) {
+        let x = e.pageX - e.target.offsetLeft;
+        let y = e.pageY - e.target.offsetTop;
+
+        let spalsh = document.createElement("span");
+        spalsh.style.left = x + "px ";
+        spalsh.style.top = y + "px ";
+
+        let bg = images[0];
+        spalsh.style.backgroundImage = bg;
+
+        this.appendChild(spalsh);
+
+        setTimeout(() => {
+          spalsh.remove();
+        }, 500);
+      };
+    </script>
+  </body>
+</html>

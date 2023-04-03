@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bg-test</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        overflow-x: hidden;
+      }
+      section {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 300px;
+        mix-blend-mode: screen;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <section class="cover">
+        <img src="img/bg03.jpg" alt="s" />
+        <div id="bg">♥</div>
+      </section>
+      <section></section>
+      <section></section>
+      <section></section>
+    </article>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script>
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".cover",
+            start: "top top",
+            end: "150% center",
+            markers: true,
+            scrub: 3,
+            pin: true,
+          },
+        })
+        .to("#bg", { scale: 15 });
+    </script>
+  </body>
+</html>
