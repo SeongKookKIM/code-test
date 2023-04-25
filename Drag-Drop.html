@@ -141,6 +141,7 @@
       };
 
       sortableList.addEventListener("dragover", initSortableList);
+      sortableList.addEventListener("dragenter", (e) => e.preventDefault());
     </script>
   </body>
 </html>
